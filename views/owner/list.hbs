@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Real Estate Management Systems</title>
+  <link rel="icon" href="home-sign.png" type="icon">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<style>
+    body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+}
+
+.navbar-brand {
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+.jumbotron {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+.jumbotron img {
+  max-height: 250px;
+  width: auto;
+}
+
+.search-container {
+  margin: 20px 0;
+}
+
+.property-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.property-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: calc(33.33% - 10px);
+  padding: 15px;
+  margin-bottom: 15px;
+  position: relative;
+  text-align: center;
+}
+
+.property-card h2 {
+  font-size: 1.4em;
+  color: #333;
+}
+
+.property-card p {
+  margin: 5px 0;
+  color: #555;
+}
+
+.property-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+}
+
+.button-group .btn {
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.btn-success {
+  background-color: #28a745;
+  color: white;
+  text-decoration: none;
+}
+
+.btn-info {
+  background-color: #17a2b8;
+  color: white;
+  text-decoration: none;
+}
+
+.btn-success:hover,
+.btn-info:hover {
+  opacity: 0.8;
+}
+
+</style>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <div class="navbar-brand">Real Estate Management System</div>
+      </div>
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="/home">Home</a></li>
+        <li><a href="/home/about">About</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/owner/login">Log Out</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Jumbotron with Image -->
+  <div class="jumbotron text-center">
+    <img src="/images/properties.png" alt="properties" class="img-responsive center-block" width="100%">
+    <h1>Real Estate Management System</h1>
+  </div>
+
+  <!-- Search Bar -->
+  <div class="container search-container">
+    <input type="text" id="propertySearch" class="form-control" placeholder="Search for properties by name, type, or location">
+  </div>
+
+  <!-- Properties Listing -->
+  <div class="container property-list">
+    {{#each properties}}
+    <div class="property-card">
+      <img src="{{this.imageUrl}}" alt="Property Image" class="property-image">
+      <h2>{{this.propertyname}}</h2>
+      <p><strong>Location:</strong> {{this.location}}</p>
+      <p><strong>Type:</strong> {{this.propertytype}} | <strong>Status:</strong> {{this.propertystatus}}</p>
+      <p><strong>BHK:</strong> {{this.propertybhk}} | <strong>Area:</strong> {{this.area}} sq. ft.</p>
+      <p><strong>Price:</strong> ₹{{this.price}}</p>
+      <div class="button-group">
+        <a href="/buy/{{this.propertyid}}" class="btn btn-success">Buy</a>
+        <a href="/rent/{{this.propertyid}}" class="btn btn-info">Rent</a>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <script src="/js/search.js"></script>
+</body>
+
+</html>
